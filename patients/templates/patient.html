@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title> Patient List</title>
+{% endblock title %}
+
+{% block content %}
+
+  <div class='container'>  
+  <br>
+  {% if messages %}
+  {% for message in messages  %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  {% endfor %}
+  {% endif %}
+  
+  
+
+  <form method = 'POST'>
+   {% csrf_token %}
+   <div class="form-group row">
+      <div class=" col-lg-4 ">
+        <input type="text" class ='form-control ' name='name' placeholder='New Patient' >
+       </div>
+      <div class="  col-lg-3">
+         <input type="text" class ='form-control ' name='disease' placeholder='disease' >
+      </div>
+      <div class="col-lg-5">
+    <input type="date" class ='form-control' name='firstappointment' placeholder='First Appointment' >
+      </div>
+      </div>
+      <br>
+   <div class="form-group row">
+    <div class=" col-lg-4 ">
+    <input type="text" class ='form-control' name='phone_number'placeholder='Number' >
+    </div>
+    <div class=" col-lg-2">
+    <button type="submit" class="btn btn-primary">Add patient</button>
+    </div>
+  </div>
+  <br>
+</form>
+<div class=" col-lg-2">
+     <a href="{%url 'download' %}">
+    <button  class="btn btn-primary">Download Data</button>  </a>
+</div>
+<br>
+<table class="table table-striped table-hover table-bordered text-center">
+  <thead class="table-dark">
+    <tr >
+      <th class="col-3">Name</th>
+      <th class="col-2">disease</th>
+      <th class="col-2">D.O.F.A</th>
+      <th class="col-2">Contacts</th>
+      <th class="col-1">edit</th>
+      <th class="col-1">Delete</a></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      {% if all %}
+      {% for obj in all%}
+      
+        <tr >
+          <th scope="row">{{ obj.name}}</th>
+          <td>{{ obj.disease}}</td>
+          <td>{{ obj.firstappointment}}</td>
+          <td>{{ obj.phone_number}}</td>
+          <td><a href="{%url 'edit_patient' obj.id %}"><button type="button" class="btn btn-outline-primary">Edit</button></td>
+          <td ><a href="{%url 'delete_patient' obj.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+  </tbody>
+   </table>
+   
+   <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+   <li class="page-item"><a class="page-link" href="?pg=1"><<</a></li>
+     {% if all.has_previous %}
+    <li class="page-item"><a class="page-link" href="?pg={{ all.previous_page_number}}">{{ all.previous_page_number}}</a></li>
+     {% endif %}
+    <li class="page-item"><a class="page-link" href="?pg={{ all.number}}">{{ all.number}}</a></li>
+    {% if all.has_next %}
+    <li class="page-item"><a class="page-link" href="?pg={{ all.next_page_number}}">{{ all.next_page_number}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?pg={{all.paginator.num_pages}}">>></a></li>
+      
+  </ul>
+</nav>
+
+</div>
+
+{% endblock content %}

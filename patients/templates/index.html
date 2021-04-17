@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title> Home</title>
+{% endblock title %}
+
+
+
+{% block content %}
+     <div class='container'>
+      <div class="row mt-5">
+        <div class="col-lg-4">
+             <img src="{% static 'images/one.jpg' %}" alt="Notes" class="rounded-lg shadow-sm" width="360" height="250">
+        </div>
+        <div class="col-lg-4">
+             <img src="{% static 'images/two.jpg' %}" alt="Notes" class="rounded-lg shadow-sm" width="360" height="250">
+        </div>
+        <div class="col-lg-4">
+             <img src="{% static 'images/three.jpg' %}" alt="Notes" class="rounded-lg shadow-sm" width="360" height="250">
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-10 offset-md-1">
+            <center><p class="h1 text-primary">Easy to write the details of the Patients.</p></center>
+            <center><p class="h2 mt-3">Quick to write, and you can Edit</p></center>
+            
+
+            <center><a href="{% url 'patients' %}"><button type="button" class="btn btn-primary btn-lg mt-3 shadow">Lets Start</button></a></center>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

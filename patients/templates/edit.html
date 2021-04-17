@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Edit Patient Data</title>
+{% endblock title %}
+<br>
+{% block content %}
+   <br>
+   {% if patient_obj.manage == request.user %}
+     <h4 class='container'>  Please Fill The date option, It is mandatory! </h4>
+          <form method = 'POST' class = "container">
+        {% csrf_token %}
+        <div class="form-group row ">
+            <div class=" col-lg-4 ">
+              <input type="text" class ='form-control ' name='name' placeholder={{ patient_obj.name }} value={{ patient_obj.name }}>
+            </div>
+            <div class="  col-lg-3">
+              <input type="text" class ='form-control ' name='disease' placeholder={{ patient_obj.disease }} value = {{ patient_obj.disease }} >
+            </div>
+            <div class="col-lg-5">
+          <input type="date" class ='form-control' name='firstappointment' placeholder={{ patient_obj.firstappointment}} value = {{ patient_obj.firstappointment}}>
+            </div>
+            </div>
+            <br>
+        <div class="form-group row">
+          <div class=" col-lg-4 ">
+          <input type="text" class ='form-control' name='phone_number'placeholder={{ patient_obj.phone_number }} value = {{ patient_obj.phone_number}} >
+          </div>
+          <div class=" col-lg-2">
+          <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+        <br>
+      </form>
+  {% else %}
+                  <p> Access restricted--You cannot access this command </p>
+  {% endif %}
+{% endblock content %}
