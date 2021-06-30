@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{%  load static %}
 {% block title %}
   <title>Search-Disease</title>
 {% endblock title %}
@@ -12,9 +12,11 @@
    <div class="form-group row ">
       
       <div class="  col-lg-3">
-         <input type="text" class ='form-control ' name='disease' placeholder="Disease?" value = {{ patient_obj.disease }} >
+         <input type="text" class ='form-control ' id="speechToText" name='disease' placeholder="Disease?" value = {{ patient_obj.disease }} >
       </div>
-      
+      <div  class="col-lg-1">
+        <a class="speech" style="font-size:24px mt-5" href=# onclick="record()"> <img src="{% static 'images/mic.png' %}" class="speech" width="31px" height="31px" style="mr-5"></img></a>
+      </div>
     <div class=" col-lg-2">
     <button type="submit" class="btn btn-primary">Search</button>
     </div>

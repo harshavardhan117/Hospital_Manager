@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{%  load static %}
 {% block title %}
   <title>Search-Number</title>
 {% endblock title %}
@@ -12,7 +12,10 @@
       
    <div class="form-group row">
     <div class=" col-lg-4 ">
-    <input type="text" class ='form-control' name='phone_number'placeholder="Mobile Number?" value = {{ patient_obj.phone_number}} >
+    <input type="text" class ='form-control' id="speechToText" name='phone_number'placeholder="Mobile Number?" value = {{ patient_obj.phone_number}} >
+    </div>
+    <div  class="col-lg-1">
+      <a class="speech" href=# style="font-size:24px mt-5"  onclick="record()"> <img src="{% static 'images/mic.png' %}" class="speech" width="31px" height="31px" style="mr-5"></img></a>
     </div>
     <div class=" col-lg-2">
     <button type="submit" class="btn btn-primary">Search</button>
